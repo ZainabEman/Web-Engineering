@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/style/style.css" ></link>
     <title>✨🧩😁</title>
   </head>
   <body>
-    <h1>This is the Title of my Pageeeee</h1>
     <header>
-      <nav>
+      <nav id="navbar">
         <li><a href="#">home</a></li>
         <li><a href="#">contact</a></li>
         <li><a href="#sec">abouts</a></li>
@@ -17,7 +16,8 @@
     </header>
     <main>
       <!--here is the trailer section-->
-      <iframe
+      <section id="media">
+        <iframe
         width="560"
         height="315"
         src="https://www.youtube.com/embed/0zICCXzJbY8?mute=1"
@@ -28,27 +28,66 @@
       ><h1> My Favourite Movie Trailer</h1>
       </iframe>
 
-      <div id="player">
-        <h1>My Digital Library</h1>
 
-        <!-- Audio Player -->
-        <audio controls>
-          <source src="pasoori.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-      </div>
+      </section>
+      <section id="player" style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div style="flex: 1;">
+            <h1>My Digital Library</h1>
+            <!-- Audio Player -->
+            <audio id="audioPlayer" controls style="width: 100%;">
+                <source src="/res/pasoori.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div style="flex: 1; margin-left: 20px;">
+            <h2>Recommended Songs</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="songList">
+                    <tr>
+                        <td>Song 1</td>
+                        <td><button onclick="deleteSong(this)">❌</button></td>
+                    </tr>
+                    <tr>
+                        <td>Song 2</td>
+                        <td><button onclick="deleteSong(this)">❌</button></td>
+                    </tr>
+                    <tr>
+                        <td>Song 3</td>
+                        <td><button onclick="deleteSong(this)">❌</button></td>
+                    </tr>
+                    <tr>
+                        <td>Song 4</td>
+                        <td><button onclick="deleteSong(this)">❌</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <script>
+        function deleteSong(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
 
       <section id="skills">
         <h1>My Skills</h1>
-        <ul>
+        <ul class="skills">
             <li>Sona (Sleeping) 🛏️</li>
             <li>Khana (Eating) 🍽️</li>
             <li>Ghoomna (Traveling) 🌍</li>
         </ul>
     </section>
 
-      <section id="sec">
-        <h1 id="pui pui">Say something about me!!!!!!!!!!!!!!!</h1>
+      <section id="form">
+        <h1>Say something about me!!!!!!!!!!!!!!!</h1>
         <form id="myform">
           <input type="text" placeholder="Tareef likhain Idher😊" required />
           <input
@@ -60,6 +99,8 @@
         </form>
       </section>
     </main>
+
+
     <footer>created by me 🙂🌷</footer>
   </body>
 </html>
