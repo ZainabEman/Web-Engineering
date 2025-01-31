@@ -13,21 +13,23 @@
 //console.log(str.slice(2));
 //sets, no duplicate values e.g. to store session keys
 
-let person ={
-    name:'zainab',
-    age:21,
-    isStudent: true,
-    registeredCourses:{
-subject1:"web",
-subject2:"PF"
-    }
+let person = {
+  name: "zainab",
+  age: 21,
+  isStudent: true,
+  registeredCourses: {
+    subject1: { title: "PF", isPassed: true },
+  },
+  displayName:function(){
+    return this.name;
+  }
+  
 };
-
 // let person1=Object.create(person);
 // person1.name='imama';
 // person1.age=21;
 
-let idVal="name";
-person[idVal];
 
-person["city"]="mars";
+person["city"] = "mars";
+let currentStudent={...person,grade:'A'}
+
