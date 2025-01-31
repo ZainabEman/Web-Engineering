@@ -16,7 +16,11 @@
 let person ={
     name:'zainab',
     age:21,
-    isStudent: true
+    isStudent: true,
+    registeredCourses:{
+subject1:"web",
+subject2:"PF"
+    }
 };
 
 // let person1=Object.create(person);
