@@ -12,3 +12,10 @@
 // mainEl.style.backgroundColor="pink";
 // let myimage=document.getElementById("image");
 // myimage.src="";
+let myEl=document.createElement("div");
+let myButton=document.createElement("button");
+myButton.innerText="Zainab";
+myEl.appendChild(myButton);
+document.body.appendChild(myEl);
+// myEl.remove;
+myButton.addEventListener("click",()=>console.log("ayesha hoon mainn"))
