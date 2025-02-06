@@ -16,12 +16,13 @@
 //     }
 // }
 //arrow function
+//callback functions
 // let name1=((name)=>{
 //     return name;
 // })();
 
 
-// const hasDuplicates = arr => arr.filter((item, index, self) => self.indexOf(item) !== index).length > 0;
+ const hasDuplicates = arr => arr.filter((item, index, self) => self.indexOf(item) !== index).length > 0;
 
 // console.log(hasDuplicates([1, 2, 3, 4, 5])); // false
 // console.log(hasDuplicates([1, 2, 3, 4, 1])); // true
@@ -32,10 +33,26 @@
 // console.log(hasDuplicates([1, 2, 3, 4, 5])); // false
 // console.log(hasDuplicates([1, 2, 3, 4, 1])); // true
 
-let add = function sum(a,b){
-    return a + b;
-}
+// let add = function sum(a,b){
+//     return a + b;
+// }
 
-let mul= function product(a,b){return a*b}
+// let mul= function product(a,b){return a*b}
 
-let manipulator=(val1,val2,func)=>{return func(val1,val2)}
+// let manipulator=(val1,val2,func)=>{return func(val1,val2)}
+// function counter(){
+//     let count=0;
+//     return function(){
+//          return counter++;
+//     };
+// };
+// let increment =counter();
+// console.log(increment());
+
+function mul(...val){
+    return val.reduce((product,num)=>product*num,1);
+};
+
+setTimeout(() => {
+    console.log(mul(2, 3, 4)); 
+}, 2000);
