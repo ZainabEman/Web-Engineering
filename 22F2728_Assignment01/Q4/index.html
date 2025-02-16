@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bank Account System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Bank Account System</h1>
+
+  <!-- Account Creation Section -->
+  <section id="accountCreation">
+    <h2>Create Your Account</h2>
+    <form id="accountForm">
+      <label for="studentRoll">Enter your Roll Number:</label>
+      <input type="text" id="studentRoll" required />
+      <button type="submit">Create Account</button>
+    </form>
+  </section>
+
+  <!-- Account Information Section (hidden until account is created) -->
+  <section id="accountInfo" style="display:none;">
+    <h2>Account Information</h2>
+    <p>Account Number: <span id="accountNumber"></span></p>
+    <p>Initial Deposit: <span id="initialDeposit"></span> PKR</p>
+    <p>Current Balance: <span id="currentBalance"></span> PKR</p>
+  </section>
+
+  <!-- Transaction Section (hidden until account is created) -->
+  <section id="transactions" style="display:none;">
+    <h2>Make a Transaction</h2>
+    <form id="transactionForm">
+      <div class="transaction-input">
+        <label for="depositAmount">Deposit Amount (must be a multiple of your roll number):</label>
+        <input type="number" id="depositAmount" placeholder="Enter deposit amount" />
+        <button type="button" id="depositBtn">Deposit</button>
+      </div>
+      <div class="transaction-input">
+        <label for="withdrawAmount">Withdrawal Amount (max 80% of current balance):</label>
+        <input type="number" id="withdrawAmount" placeholder="Enter withdrawal amount" />
+        <button type="button" id="withdrawBtn">Withdraw</button>
+      </div>
+    </form>
+    <p id="message"></p>
+  </section>
+
+  <!-- Transaction History Section (hidden until account is created) -->
+  <section id="history" style="display:none;">
+    <h2>Transaction History</h2>
+    <ul id="transactionList"></ul>
+    <button id="downloadBtn">Download Transaction History</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
