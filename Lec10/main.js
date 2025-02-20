@@ -24,3 +24,4 @@
  const user=[{name:'zainab', age:21},{name:'Imama', age:21},{name:'noor', age:21}];
  console.log(JSON.stringify(user.name));
  localStorage.setItem('classData',JSON.stringify(user));
+ localStorage.setItem('classData',JSON.parse(user));
