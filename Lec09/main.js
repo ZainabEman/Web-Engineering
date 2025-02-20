@@ -31,22 +31,26 @@
 //     console.log("end");
     
 
-console.log("start");
-const promise= new Promise(function(resolve, reject){
-    setTimeout(
-        reject(new Error("i am filled"));
-        )
-        resolve(1),2000
-    );
-});
+// console.log("start");
+// const promise= new Promise(function(resolve, reject){
+//     setTimeout(
+//         reject(new Error("i am filled"));
+//         )
+//         resolve(1),2000
+//     );
+// });
 
-console.log(promise);
+// console.log(promise);
 
-promise.then(function (result) {
-    console.log(result);
-})
+// promise.then(function (result) {
+//     console.log(result);
+// })
 
+const getAPI=fetch('https://api.github.com/users/ZainabEman');
+getAPI.then((res)=> console.log(res));
+getAPI.catch((err)=>console.log(err.message));
 
+agex
 
 
 
