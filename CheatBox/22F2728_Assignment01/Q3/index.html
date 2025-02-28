@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Selective String Reversal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Selective String Reversal</h1>
+  <form id="transformForm">
+    <label for="inputString">Enter String:</label>
+    <input type="text" id="inputString" required />
+
+    <label for="rollNumber">Enter Roll Number:</label>
+    <input type="text" id="rollNumber" value="3738" required />
+
+    <!-- Bonus: Optional manual skip interval -->
+    <label for="skipInterval">Or Enter Skip Interval (optional):</label>
+    <input type="number" id="skipInterval" placeholder="Skip Interval" />
+
+    <button type="submit">Transform</button>
+  </form>
+
+  <h2>Results</h2>
+  <ul id="resultList"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>

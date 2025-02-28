@@ -1,0 +1,209 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background: #f4f4f4;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+#productContainer {
+    margin-left: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background-color 0.3s;
+}
+
+.switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: purple;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.productCard {
+    width: 350px;
+    height: 400px;
+    perspective: 1000px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.front, .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    background: linear-gradient(to right, purple, pink);
+}
+
+.front {
+    justify-content: flex-start;
+}
+
+.back {
+    transform: rotateY(180deg);
+    justify-content: center;
+}
+
+.front img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+}
+
+.front .info {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.front .info .name,
+.front .info .price {
+    width: 100%;
+    text-align:end;
+}
+
+.front .info button {
+    padding: 10px 20px;
+    background-color: #fff;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.front .info button:hover {
+    background-color: #eee;
+}
+
+.productCard:hover .front {
+    transform: rotateY(180deg);
+}
+
+.productCard:hover .back {
+    transform: rotateY(360deg);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background: #f4f4f4;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: background-color 0.3s;
+}
+
+#sidebar.dark-mode {
+    background: #333;
+    color: #fff;
+}
+
+.productCard .front, .productCard .back {
+    background: linear-gradient(to right, purple, pink);
+}
+
+body.dark-mode .productCard .front, body.dark-mode .productCard .back {
+    background: linear-gradient(to right, indigo, darkmagenta);
+}
+
+.back .button {
+    padding: 12px 25px;
+    background-color: darkmagenta;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back .button:hover {
+    background-color: pink;
+    transform: translateY(-2px);
+}
+
+.back .button:focus {
+    outline: none;
+}
