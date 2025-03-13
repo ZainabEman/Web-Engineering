@@ -129,5 +129,8 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
+//PATCH and PUT
 
+app.patch('friends\:id', (req, res)=>{
 
+})
