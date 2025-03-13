@@ -90,18 +90,28 @@ app.patch('/friends/:id', (req, res) => {
     return res.json({ message: '✅ Friend updated successfully', friend: myFriends[index] });
 });
 
-// // ✅ **DELETE: Remove a Friend**
-// app.delete('/friends/:id', (req, res) => {
-//     const paramId = parseInt(req.params.id);
-//     const index = myFriends.findIndex(friend => friend.id === paramId);
+// ✅ **DELETE: Remove a Friend**
+app.delete('/friends/:id', (req, res) => {
+    const paramId = parseInt(req.params.id);
+    const index = myFriends.findIndex(friend => friend.id === paramId);
 
-//     if (index === -1) {
-//         return res.status(404).json({ error: "❌ Friend not found" });
-//     }
+    if (index === -1) {
+        return res.status(404).json({ error: "❌ Friend not found" });
+    }
 
-//     myFriends.splice(index, 1);
-//     return res.json({ message: "✅ Friend deleted successfully" });
-// });
+    myFriends.splice(index, 1);
+    return res.json({ message: "✅ Friend deleted successfully" });
+});
+
+// ✅ **DELETE: Remove All Friends**
+app.delete('/friends', (req, res) => {
+    myFriends.length = 0; // Clear the array
+
+    return res.json({ message: "✅ All friends deleted successfully" });
+});
+
+
+
 
 // ✅ **Server Listening**
 const PORT = process.env.PORT || 3000;
