@@ -7,7 +7,7 @@ import New from './New.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <New name='zainu' age={90}/>
+    <New Bookname='Zainab' Aurthorname={90}/>
     {/* <Test name='zainu' age={90} /> */}
     <Interval/>
   </StrictMode>
