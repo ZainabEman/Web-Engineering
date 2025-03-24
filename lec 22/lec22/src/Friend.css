@@ -1,0 +1,10 @@
+.Friend {
+    width: 300px;
+    margin: 10px auto; /* Removed space in '10 px' */
+    padding: 10px;
+    border: 2px solid black; /* Adjusted border thickness */
+    border-radius: 10px;
+    background-color: brown;
+    color: white; /* Added text color for better visibility */
+    text-align: center; /* Centering content */
+}
