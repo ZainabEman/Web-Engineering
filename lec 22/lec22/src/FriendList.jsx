@@ -6,8 +6,8 @@ export class FriendList extends Component {
         super();
         this.state = {
             friends: [
-                { name: "Zainab", email: "zainab@gmail.com" },
-                { name: "Sana", email: "sana@gmail.com" }
+                { id: 1, name: "Zainab", email: "zainab@gmail.com" },
+                { id: 2, name: "Sana", email: "sana@gmail.com" }
             ],
             inputValue: "" 
         };
@@ -16,27 +16,33 @@ export class FriendList extends Component {
     ChangeBookState = () => {
         this.setState({
             friends: [
-                { name: "Eman", email: "eman@gmail.com" },
-                { name: "Noor", email: "noor@gmail.com" }
+                { id: 3, name: "Eman", email: "eman@gmail.com" },
+                { id: 4, name: "Noor", email: "noor@gmail.com" }
             ]
         });
     };
 
     changeInput = (event) => {
         this.setState({
-            inputValue: event.target.value, // Store input value
+            inputValue: event.target.value,
             friends: [
-                { name: event.target.value, email: this.state.friends[0].email },
-                { name: this.state.friends[1].name, email: this.state.friends[1].email }
+                { id: this.state.friends[0].id, name: event.target.value, email: this.state.friends[0].email },
+                { id: this.state.friends[1].id, name: this.state.friends[1].name, email: this.state.friends[1].email }
             ]
+        });
+    };
+
+    deleteFriend = (id) => {
+        const updatedFriends = this.state.friends.filter(friend => friend.id !== id);
+        this.setState({
+            friends: updatedFriends
         });
     };
 
     render() {
         return (
             <div>
-                <Friend Name={this.state.friends[0].name} email={this.state.friends[0].email} />
-                <Friend Name={this.state.friends[1].name} email={this.state.friends[1].email} />
+                <Friend friends={this.state.friends} change={this.changeInput} deleteFriend={this.deleteFriend} />
                 <button onClick={this.ChangeBookState}>Change state</button>
                 <input
                     type="text"
@@ -44,7 +50,7 @@ export class FriendList extends Component {
                     onChange={this.changeInput}
                     placeholder="Enter name..."
                 />
-                <p>Updated Name: {this.state.friends[0].name}</p>
+                <p>Updated Name: {this.state.friends[0]?.name}</p>
             </div>
         );
     }
