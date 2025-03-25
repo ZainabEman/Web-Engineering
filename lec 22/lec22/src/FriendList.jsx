@@ -8,8 +8,7 @@ export class FriendList extends Component {
             friends: [
                 { id: 1, name: "Zainab", email: "zainab@gmail.com" },
                 { id: 2, name: "Sana", email: "sana@gmail.com" }
-            ],
-            inputValue: "" 
+            ]
         };
     }
 
@@ -22,13 +21,16 @@ export class FriendList extends Component {
         });
     };
 
-    changeInput = (event) => {
+    handleInputChange = (event, friendId) => {
+        const updatedFriends = this.state.friends.map(friend => {
+            if (friend.id === friendId) {
+                return { ...friend, name: event.target.value };
+            }
+            return friend;
+        });
+        
         this.setState({
-            inputValue: event.target.value,
-            friends: [
-                { id: this.state.friends[0].id, name: event.target.value, email: this.state.friends[0].email },
-                { id: this.state.friends[1].id, name: this.state.friends[1].name, email: this.state.friends[1].email }
-            ]
+            friends: updatedFriends
         });
     };
 
@@ -42,15 +44,12 @@ export class FriendList extends Component {
     render() {
         return (
             <div>
-                <Friend friends={this.state.friends} change={this.changeInput} deleteFriend={this.deleteFriend} />
-                <button onClick={this.ChangeBookState}>Change state</button>
-                <input
-                    type="text"
-                    value={this.state.inputValue}
-                    onChange={this.changeInput}
-                    placeholder="Enter name..."
+                <Friend 
+                    friends={this.state.friends} 
+                    onInputChange={this.handleInputChange} 
+                    deleteFriend={this.deleteFriend} 
                 />
-                <p>Updated Name: {this.state.friends[0]?.name}</p>
+                <button onClick={this.ChangeBookState}>Change state</button>
             </div>
         );
     }
