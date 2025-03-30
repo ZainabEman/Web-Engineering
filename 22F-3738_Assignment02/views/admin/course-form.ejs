@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= action === 'edit' ? 'Edit Course' : 'Add New Course' %> - Admin Panel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="adminNavbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/courses">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/students">Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/reports">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h1><%= action === 'edit' ? 'Edit Course' : 'Add New Course' %></h1>
+    <form action="<%= action === 'edit' ? '/admin/courses/' + course._id : '/admin/courses' %>" method="POST">
+      <% if (action === 'edit') { %>
+        <!-- For method override if needed -->
+        <input type="hidden" name="_method" value="POST">
+      <% } %>
+      <div class="mb-3">
+        <label for="courseCode" class="form-label">Course Code</label>
+        <input type="text" class="form-control" id="courseCode" name="courseCode" value="<%= course ? course.courseCode : '' %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="title" class="form-label">Course Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="<%= course ? course.title : '' %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="department" class="form-label">Department</label>
+        <input type="text" class="form-control" id="department" name="department" value="<%= course ? course.department : '' %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Course Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required><%= course ? course.description : '' %></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="courseLevel" class="form-label">Course Level</label>
+        <input type="number" class="form-control" id="courseLevel" name="courseLevel" value="<%= course ? course.courseLevel : '' %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="credits" class="form-label">Credits</label>
+        <input type="number" class="form-control" id="credits" name="credits" value="<%= course ? course.credits : '' %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="instructor" class="form-label">Instructor</label>
+        <input type="text" class="form-control" id="instructor" name="instructor" value="<%= course ? course.instructor : '' %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="totalSeats" class="form-label">Total Seats</label>
+        <input type="number" class="form-control" id="totalSeats" name="totalSeats" value="<%= course ? course.totalSeats : '' %>" required>
+      </div>
+      <% if (action === 'edit') { %>
+      <div class="mb-3">
+        <label for="availableSeats" class="form-label">Available Seats</label>
+        <input type="number" class="form-control" id="availableSeats" name="availableSeats" value="<%= course ? course.availableSeats : '' %>" required>
+      </div>
+      <% } %>
+
+      <div class="mb-3">
+        <label class="form-label">Schedule</label>
+        <!-- For simplicity, a single schedule entry is provided -->
+        <div class="row">
+          <div class="col-md-3">
+            <input type="text" class="form-control" name="scheduleDay" placeholder="Day (e.g., Monday)" value="<%= course && course.schedule && course.schedule[0] ? course.schedule[0].dayOfWeek : '' %>" required>
+          </div>
+          <div class="col-md-3">
+            <input type="time" class="form-control" name="scheduleStart" placeholder="Start Time" value="<%= course && course.schedule && course.schedule[0] ? course.schedule[0].startTime : '' %>" required>
+          </div>
+          <div class="col-md-3">
+            <input type="time" class="form-control" name="scheduleEnd" placeholder="End Time" value="<%= course && course.schedule && course.schedule[0] ? course.schedule[0].endTime : '' %>" required>
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" name="scheduleLocation" placeholder="Location" value="<%= course && course.schedule && course.schedule[0] ? course.schedule[0].location : '' %>" required>
+          </div>
+        </div>
+        <small class="form-text text-muted">These schedule details will be combined into a JSON object on the server.</small>
+      </div>
+
+      <div class="mb-3">
+        <label for="prerequisites" class="form-label">Prerequisites</label>
+        <select class="form-select" id="prerequisites" name="prerequisites" multiple>
+          <% allCourses.forEach(function(c) { %>
+            <% if (!course || c._id.toString() !== course._id.toString()) { %>
+              <option value="<%= c._id %>" <%= course && course.prerequisites && course.prerequisites.some(pr => pr._id.toString() === c._id.toString()) ? 'selected' : '' %>>
+                <%= c.courseCode %> - <%= c.title %>
+              </option>
+            <% } %>
+          <% }) %>
+        </select>
+        <div class="form-text">Hold down Ctrl (Windows) or Command (Mac) to select multiple options.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary"><%= action === 'edit' ? 'Update Course' : 'Create Course' %></button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

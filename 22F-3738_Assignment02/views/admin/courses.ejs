@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage Courses - Admin Panel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <!-- Toast Container for pop-up notifications -->
+  <div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3"></div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="adminNavbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/admin/courses">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/students">Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/reports">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Manage Courses</h1>
+      <a href="/admin/courses/new" class="btn btn-success">Add New Course</a>
+    </div>
+    
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Course Code</th>
+          <th>Title</th>
+          <th>Department</th>
+          <th>Level</th>
+          <th>Instructor</th>
+          <th>Total Seats</th>
+          <th>Available Seats</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (courses && courses.length > 0) { %>
+          <% courses.forEach(function(course) { %>
+            <tr id="course_<%= course._id %>">
+              <td><%= course.courseCode %></td>
+              <td><%= course.title %></td>
+              <td><%= course.department %></td>
+              <td><%= course.courseLevel %></td>
+              <td><%= course.instructor %></td>
+              <td><%= course.totalSeats %></td>
+              <td class="available-seats"><%= course.availableSeats %></td>
+              <td>
+                <a href="/admin/courses/<%= course._id %>/edit" class="btn btn-sm btn-primary">Edit</a>
+                <form action="/admin/courses/<%= course._id %>?_method=DELETE" method="POST" style="display:inline;">
+                  <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this course?');">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="8" class="text-center">No courses found.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Include Socket.IO client library -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/admin/admin.js"></script>
+</body>
+</html>

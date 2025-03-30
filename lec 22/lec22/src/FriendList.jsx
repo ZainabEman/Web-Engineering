@@ -8,7 +8,9 @@ export class FriendList extends Component {
             friends: [
                 { id: 1, name: "Zainab", email: "zainab@gmail.com" },
                 { id: 2, name: "Sana", email: "sana@gmail.com" }
-            ]
+            ],
+            newFriendName: "",
+            newFriendEmail: ""
         };
     }
 
@@ -22,16 +24,45 @@ export class FriendList extends Component {
     };
 
     handleInputChange = (event, friendId) => {
-        const updatedFriends = this.state.friends.map(friend => {
-            if (friend.id === friendId) {
-                return { ...friend, name: event.target.value };
+        const friends = [...this.state.friends];
+        for (let i = 0; i < friends.length; i++) {
+            if (friends[i].id === friendId) {
+                friends[i] = { ...friends[i], name: event.target.value };
+                break;
             }
-            return friend;
-        });
+        }
         
         this.setState({
-            friends: updatedFriends
+            friends: friends
         });
+    };
+
+    handleNewFriendInput = (event) => {
+        this.setState({
+            newFriendName: event.target.value
+        });
+    };
+
+    handleNewFriendEmail = (event) => {
+        this.setState({
+            newFriendEmail: event.target.value
+        });
+    };
+
+    addNewFriend = () => {
+        if (this.state.newFriendName && this.state.newFriendEmail) {
+            const newFriend = {
+                id: this.state.friends.length + 1,
+                name: this.state.newFriendName,
+                email: this.state.newFriendEmail
+            };
+            
+            this.setState({
+                friends: [...this.state.friends, newFriend],
+                newFriendName: "",
+                newFriendEmail: ""
+            });
+        }
     };
 
     deleteFriend = (id) => {
@@ -44,6 +75,21 @@ export class FriendList extends Component {
     render() {
         return (
             <div>
+                <div className="add-friend-form">
+                    <input
+                        type="text"
+                        value={this.state.newFriendName}
+                        onChange={this.handleNewFriendInput}
+                        placeholder="Enter new friend name..."
+                    />
+                    <input
+                        type="email"
+                        value={this.state.newFriendEmail}
+                        onChange={this.handleNewFriendEmail}
+                        placeholder="Enter new friend email..."
+                    />
+                    <button onClick={this.addNewFriend}>Add Friend</button>
+                </div>
                 <Friend 
                     friends={this.state.friends} 
                     onInputChange={this.handleInputChange} 
