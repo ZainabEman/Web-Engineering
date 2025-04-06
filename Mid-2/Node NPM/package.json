@@ -1,0 +1,30 @@
+{
+  "name": "node-npm-practice",
+  "version": "1.0.0",
+  "description": "Node.js and NPM practice materials for web development exam",
+  "main": "examples/app_commonjs.js",
+  "scripts": {
+    "start": "node examples/app_commonjs.js",
+    "start:es6": "node examples/app_es6.js",
+    "debug": "node examples/debug_example.js",
+    "fix": "node examples/broken_code.js",
+    "advanced": "node examples/advanced_package_usage.js",
+    "script:run": "node examples/script_runner.js"
+  },
+  "keywords": [
+    "node",
+    "npm",
+    "modules",
+    "practice"
+  ],
+  "author": "Web Development Student",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+} 
