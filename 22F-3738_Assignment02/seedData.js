@@ -149,6 +149,8 @@ async function seedData() {
     // Suppose CS201 requires CS101 as a prerequisite.
     const cs101 = courses.find(c => c.courseCode === 'CS101');
     const cs201 = courses.find(c => c.courseCode === 'CS201');
+    const m101 = courses.find(c => c.courseCode === 'MATH101');
+    const m102 = courses.find(c => c.courseCode === 'HIST101');
     if (cs101 && cs201) {
       cs201.prerequisites.push(cs101._id);
       await cs201.save();
