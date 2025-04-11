@@ -5,7 +5,7 @@ const session=require('express-session');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 dotenv.config();//enviorment variable loaded from .env file into the folder
-
+const jwt = require('jsonwebtoken');
 const users=require('./user.js');
 const app = express();
 app.use(express.json());
@@ -53,3 +53,7 @@ app.post('/profile', (req, res) => {
     }catch(err){
         return res.status(401).json({ message: 'Invalid token' });
     }
+});
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});

@@ -1,0 +1,19 @@
+{
+    "name": "auth-api",
+    "version": "1.0.0",
+    "description": "Simple authentication API using Express, bcrypt, JWT, and session handling",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "bcrypt": "^5.1.0",
+      "dotenv": "^16.4.5",
+      "express": "^4.19.2",
+      "express-session": "^1.17.3",
+      "jsonwebtoken": "^9.0.2"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  
