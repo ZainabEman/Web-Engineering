@@ -7,9 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const completedList = document.getElementById("completedList");
     const taskCount = document.getElementById("taskCount");
     const darkModeToggle = document.getElementById("darkModeToggle");
+    const addTaskBtn = document.getElementById("addTaskBtn");
+
     let tasks = [];
 
     function renderTasks() {
+        // Reset columns
         lowPriority.innerHTML = "<h3>Low Priority</h3>";
         mediumPriority.innerHTML = "<h3>Medium Priority</h3>";
         highPriority.innerHTML = "<h3>High Priority</h3>";
@@ -18,71 +21,69 @@ document.addEventListener("DOMContentLoaded", () => {
         let incompleteTasks = tasks.filter(task => !task.completed);
         let completedTasks = tasks.filter(task => task.completed);
 
+        // Render incomplete
         incompleteTasks.forEach(task => {
             const taskElement = createTaskElement(task);
             if (task.priority === "High") highPriority.appendChild(taskElement);
-            if (task.priority === "Medium") mediumPriority.appendChild(taskElement);
-            if (task.priority === "Low") lowPriority.appendChild(taskElement);
+            else if (task.priority === "Medium") mediumPriority.appendChild(taskElement);
+            else lowPriority.appendChild(taskElement);
         });
 
-        completedTasks.forEach(task => completedList.appendChild(createTaskElement(task)));
+        // Render completed
+        completedTasks.forEach(task => {
+            const taskElement = createTaskElement(task);
+            completedList.appendChild(taskElement);
+        });
+
         taskCount.textContent = `Incomplete Tasks: ${incompleteTasks.length}`;
     }
 
     function createTaskElement(task) {
-        let taskElement = document.createElement("div");
+        const taskElement = document.createElement("div");
         taskElement.classList.add("task");
         taskElement.dataset.name = task.name.toLowerCase();
-        taskElement.innerHTML = `<span>${task.name}</span>
-            <button class="completeBtn">✔</button>
-            <button class="deleteBtn">✖</button>`;
         if (task.completed) taskElement.classList.add("completed");
+
+        taskElement.innerHTML = `
+            <span>${task.name}</span>
+            <div>
+                ${!task.completed ? '<button class="completeBtn">✔</button>' : ""}
+                <button class="deleteBtn">✖</button>
+            </div>
+        `;
         return taskElement;
     }
 
-    document.getElementById("addTaskBtn").addEventListener("click", () => {
-        let name = taskInput.value.trim();
-        let priority = priorityInput.value;
+    addTaskBtn.addEventListener("click", () => {
+        const name = taskInput.value.trim();
+        const priority = priorityInput.value;
         if (!name) return alert("Task name cannot be empty");
+
         tasks.push({ name, priority, completed: false });
         taskInput.value = "";
         renderTasks();
     });
 
     document.querySelector(".task-columns").addEventListener("click", event => {
+        const parentTask = event.target.closest(".task");
+        if (!parentTask) return;
+
+        const taskName = parentTask.dataset.name;
+
         if (event.target.classList.contains("completeBtn")) {
-            let taskName = event.target.parentElement.dataset.name;
-            tasks = tasks.map(task => task.name.toLowerCase() === taskName ? { ...task, completed: true } : task);
+            tasks = tasks.map(task =>
+                task.name.toLowerCase() === taskName ? { ...task, completed: true } : task
+            );
         } else if (event.target.classList.contains("deleteBtn")) {
-            let taskName = event.target.parentElement.dataset.name;
             tasks = tasks.filter(task => task.name.toLowerCase() !== taskName);
         }
+
         renderTasks();
     });
 
-    darkModeToggle.addEventListener("click", () => {
+    darkModeToggle.addEventListener("change", () => {
         document.body.classList.toggle("dark-mode");
     });
 
     renderTasks();
 });
-
-document.getElementById('darkModeToggle').addEventListener('change', function() {
-    document.body.classList.toggle('dark-mode');
-});
-
-function addTask() {
-    let taskText = document.getElementById('taskInput').value;
-    let priority = document.getElementById('priority').value;
-    if (taskText.trim() === '') return;
-
-    let taskDiv = document.createElement('div');
-    taskDiv.textContent = taskText;
-    taskDiv.style.padding = '10px';
-    taskDiv.style.margin = '5px';
-    taskDiv.style.background = '#ddd';
-    taskDiv.style.borderRadius = '5px';
-    
-    document.getElementById(priority).appendChild(taskDiv);
-    document.getElementById('taskInput').value = '';
-}

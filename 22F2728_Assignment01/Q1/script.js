@@ -2,19 +2,19 @@ const products = [
     {
         name: "Lavender Pearl Handbag",
         price: "$120.00",
-        image: "/img/bag.jpg", // Replace with actual image path
+        image: "img/bag.jpg", 
         description: "Elegant lavender handbag perfect for evening outings. Features a luxurious pearl handle and a quilted finish."
     },
     {
         name: "Classic Cream Handbag",
         price: "$150.00",
-        image: "/img/bag2.jpg", // Replace with actual image path
+        image: "img/bag2.jpg", 
         description: "A classic cream-colored handbag with a textured surface and sleek gold accents. Ideal for both casual and formal wear."
     },
     {
         name: "Floral Print Handbag",
         price: "$95.00",
-        image: "/img/bag3.jpg", // Replace with actual image path
+        image: "img/bag3.jpg", 
         description: "Chic handbag with a vibrant floral print and red trimming, perfect for adding a pop of color to any outfit."
     }
 ];
@@ -35,10 +35,14 @@ function displayProduct(index) {
             </div>
             <div class="back">
                 <p>${product.description}</p>
-                <button class="button" onclick="console.log('${product.name}')">Buy Now</button>
+                <button class="button" onclick="buyProduct('${product.name}')">Buy Now</button>
             </div>
         </div>
     `;
+}
+
+function buyProduct(productName) {
+    console.log(`${productName} has been bought!`);
 }
 
 document.querySelector('#toggleDarkMode input').addEventListener('change', function() {
@@ -47,7 +51,6 @@ document.querySelector('#toggleDarkMode input').addEventListener('change', funct
     document.getElementById('productContainer').style.backgroundColor = isDarkMode ? '#282828' : '#f0f0f0';
     document.getElementById('sidebar').classList.toggle('dark-mode', isDarkMode);
 });
-
 
 // Initially display the first product
 displayProduct(0);
