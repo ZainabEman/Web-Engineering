@@ -21,8 +21,8 @@ async function seedData() {
     // --- Seed Admin User ---
     const adminData = {
       username: 'admin',
-      email: 'admin@example.com',
-      password: 'admin123', // pre-save hook will hash this password
+      email: 'zainab@admin.com',
+      password: 'zainab123', // pre-save hook will hash this password
       role: 'admin',
       fullName: 'Admin User'
     };
@@ -35,7 +35,7 @@ async function seedData() {
       {
         username: 'student1',
         email: 'student1@example.com',
-        password: 'student123', // will be hashed via pre-save hook
+        password: 'student123', 
         role: 'student',
         fullName: 'Student One'
       },
@@ -58,12 +58,12 @@ async function seedData() {
     const courseData = [
       {
         courseCode: 'CS101',
-        title: 'Introduction to Computer Science',
+        title: 'Introduction to Computer',
         department: 'Computer Science',
         description: 'An overview of the fundamental concepts of computer science.',
         courseLevel: 100,
         credits: 3,
-        instructor: 'Dr. Smith',
+        instructor: 'Tahir Farooq',
         totalSeats: 30,
         availableSeats: 30,
         schedule: [
@@ -79,14 +79,14 @@ async function seedData() {
         description: 'A study of data structures such as lists, stacks, queues, trees, and graphs.',
         courseLevel: 200,
         credits: 3,
-        instructor: 'Prof. Johnson',
+        instructor: 'Nabeela Ashraf',
         totalSeats: 25,
         availableSeats: 25,
         schedule: [
           { dayOfWeek: 'Tuesday', startTime: '11:00', endTime: '12:30', location: 'Room 102' },
           { dayOfWeek: 'Thursday', startTime: '11:00', endTime: '12:30', location: 'Room 102' }
         ],
-        prerequisites: [] // will update later
+        prerequisites: [] 
       },
       {
         courseCode: 'MATH101',
@@ -95,9 +95,9 @@ async function seedData() {
         description: 'Differential and integral calculus of one variable.',
         courseLevel: 100,
         credits: 4,
-        instructor: 'Dr. Williams',
-        totalSeats: 40,
-        availableSeats: 40,
+        instructor: 'Amjad Hussain',
+        totalSeats: 30,
+        availableSeats: 26,
         schedule: [
           { dayOfWeek: 'Monday', startTime: '11:00', endTime: '12:30', location: 'Room 201' },
           { dayOfWeek: 'Wednesday', startTime: '11:00', endTime: '12:30', location: 'Room 201' }
@@ -112,9 +112,9 @@ async function seedData() {
         description: 'A survey of world history from ancient times to the present.',
         courseLevel: 100,
         credits: 3,
-        instructor: 'Dr. Taylor',
+        instructor: 'Zubia Arif',
         totalSeats: 30,
-        availableSeats: 30,
+        availableSeats: 15,
         // Same schedule as CS101
         schedule: [
           { dayOfWeek: 'Monday', startTime: '09:00', endTime: '10:30', location: 'Room 101' },
@@ -129,7 +129,7 @@ async function seedData() {
         description: 'An introductory course covering major philosophical ideas.',
         courseLevel: 100,
         credits: 3,
-        instructor: 'Dr. Adams',
+        instructor: 'Ali Raza',
         totalSeats: 30,
         availableSeats: 30,
         // Same schedule as CS101

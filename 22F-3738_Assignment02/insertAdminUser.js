@@ -8,8 +8,8 @@ mongoose.connect('mongodb://localhost:27017/university-registration')
 
     const admin = new User({
       username: 'admin',
-      email: 'admin@example.com',
-      password: 'admin123', // plain text, will be hashed by pre('save')
+      email: 'zainab@admin.com',
+      password: 'zainab123', // plain text, will be hashed by pre('save')
       role: 'admin',
       fullName: 'Admin User'
     });
