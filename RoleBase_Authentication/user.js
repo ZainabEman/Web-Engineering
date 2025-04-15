@@ -1,0 +1,20 @@
+user=[
+    {
+        id:1,
+        username:'Zainab',
+        password:'HelloZainab',
+        role:'admin'
+    },
+    {
+        id:2,
+        username:'Imama',
+        password:'HelloImama',
+        role:'editor'
+    },
+    {
+        id:3,
+        username:'Noor',
+        password:'HelloNoor',
+        role:'viewer'
+    }
+]
