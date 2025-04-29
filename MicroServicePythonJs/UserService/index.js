@@ -16,7 +16,16 @@ const User=mongoose.model("User",{
     email:String
 });
 
-app.length('/users',async(_,res)=>{
+app.get('/users',async(_,res)=>{
     const users = await User.find();
     res.json(users);
+});
+
+app.post('/users',async(req,res)=>{
+    const user = await new User(req.body);
+    res.status(201).json(user);
+});
+
+app.listen(3001,()=>{
+    console.log("server is running");
 });
