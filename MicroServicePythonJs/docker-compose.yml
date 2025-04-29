@@ -1,0 +1,5 @@
+services:
+api-gateways:
+build:./api-gateway
+ports:
+- "3000:3000"
